@@ -1,6 +1,10 @@
 class TodosController < ApplicationController
   before_action :_todo, only: %i[show edit update]
 
+  def index
+    @todos = Todo.all
+  end
+
   def show; end
 
   def new
