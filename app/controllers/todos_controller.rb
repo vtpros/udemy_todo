@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :_todo, only: %i[show edit update]
+  before_action :_todo, only: %i[show edit update destroy]
 
   def index
     @todos = Todo.all
@@ -21,9 +21,7 @@ class TodosController < ApplicationController
     end
   end
 
-  def edit
-
-  end
+  def edit; end
 
   def update
     if @todo.update(todo_params)
@@ -32,6 +30,12 @@ class TodosController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @todo.destroy
+    flash[:notice] = "Todo was deleted successfully"
+    redirect_to todos_path
   end
 
   private
