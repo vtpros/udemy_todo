@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :_todo, only: %i[show edit update destroy]
+  before_action :set_todo, only: %i[show edit update destroy]
 
   def index
     @todos = Todo.all
@@ -40,7 +40,7 @@ class TodosController < ApplicationController
 
   private
 
-  def _todo
+  def set_todo
     @todo ||= Todo.find(params[:id])
   end
 
